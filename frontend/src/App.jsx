@@ -96,24 +96,39 @@ function App() {
   };
 
   const handleDeleteTask = async (taskId) => {
+    
+    const previousTasks = [...tasks];
+    const updatedTasks = tasks.filter(t => t.id !== taskId);
+    setTasks(updatedTasks);
+
     try {
+      
       await taskService.deleteTask(taskId);
-      await loadTasks();
     } catch (err) {
       console.error('Error deleting task:', err);
+      
+      setTasks(previousTasks);
       alert('Failed to delete task. Please try again.');
     }
   };
 
   const handleTaskMove = async (taskId, newStatus) => {
+    const task = tasks.find(t => t.id === taskId);
+    if (!task) return;
+
+    const previousTasks = [...tasks];
+    const updatedTasks = tasks.map(t => 
+      t.id === taskId ? { ...t, status: newStatus } : t
+    );
+    setTasks(updatedTasks);
+
     try {
-      const task = tasks.find(t => t.id === taskId);
-      if (task) {
-        await taskService.updateTask(taskId, { ...task, status: newStatus });
-        await loadTasks();
-      }
+      
+      await taskService.updateTask(taskId, { ...task, status: newStatus });
     } catch (err) {
       console.error('Error moving task:', err);
+      
+      setTasks(previousTasks);
       alert('Failed to update task status. Please try again.');
     }
   };
