@@ -2,6 +2,9 @@
 
 A full-stack task management application with intelligent voice input capabilities. Built with React, Node.js, Express, and MySQL.
 
+**Live Demo**: https://voiceflow-task-tracker.vercel.app/  
+**Backend API**: https://backend-production-****.u*.railway.app/api/tasks
+
 **Demo Video**: [Link to be added]  
 **GitHub Repository**: [Your repository URL]
 
@@ -18,6 +21,7 @@ A full-stack task management application with intelligent voice input capabiliti
 7. [AI Tools Usage](#-ai-tools-usage)
 8. [Known Limitations](#-known-limitations)
 9. [Future Enhancements](#-future-enhancements)
+10. [Live Deployment](#-live-deployment)
 
 ---
 
@@ -829,6 +833,16 @@ The key is to **use AI as a learning tool**, not just a code generator. Always u
     - Error tracking (Sentry)
     - Performance monitoring
     - User analytics
+
+---
+
+## 🚀 Live Deployment
+
+**Frontend (Vercel)**: https://voiceflow-task-tracker.vercel.app/  
+**Backend (Railway)**: https://backend-production-****.u*.railway.app/api/tasks  
+**Database**: MySQL on Railway
+
+> **Note**: This project includes full end-to-end deployment on production infrastructure. While not required for the assignment, I developed and deployed the complete application to demonstrate real-world deployment capabilities. You can now access the assignment both locally and through the deployed servers.
 
 ---
 
