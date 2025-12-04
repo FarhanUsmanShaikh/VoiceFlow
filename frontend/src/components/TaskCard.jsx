@@ -3,7 +3,9 @@ import { PriorityLabels, PriorityColors } from '../types/task';
 const TaskCard = ({ task, onClick, onDelete, draggable = true }) => {
   const formatDate = (dateString) => {
     if (!dateString) return null;
-    const date = new Date(dateString);
+    
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
@@ -17,7 +19,14 @@ const TaskCard = ({ task, onClick, onDelete, draggable = true }) => {
     onClick(task);
   };
 
-  const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'done';
+  const isOverdue = task.due_date && (() => {
+  
+    const [year, month, day] = task.due_date.split('T')[0].split('-');
+    const dueDate = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return dueDate < today && task.status !== 'done';
+  })();
 
   const priorityStyles = {
     low: 'bg-gray-100 text-gray-700 border-gray-200',

@@ -16,12 +16,21 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
   // Pre-populate form when editing
   useEffect(() => {
     if (task && mode === 'edit') {
+      // Format date to YYYY-MM-DD for date input
+      let formattedDate = '';
+      if (task.due_date) {
+        const date = new Date(task.due_date);
+        if (!isNaN(date.getTime())) {
+          formattedDate = date.toISOString().split('T')[0];
+        }
+      }
+      
       setFormData({
         title: task.title || '',
         description: task.description || '',
         priority: task.priority || TaskPriority.MEDIUM,
         status: task.status || TaskStatus.TODO,
-        dueDate: task.due_date || ''
+        dueDate: formattedDate
       });
     }
   }, [task, mode]);

@@ -7,7 +7,9 @@ const TaskList = ({ tasks, onTaskClick, onTaskDelete }) => {
   const [deleteTaskTitle, setDeleteTaskTitle] = useState('');
   const formatDate = (dateString) => {
     if (!dateString) return 'No due date';
-    const date = new Date(dateString);
+    
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
@@ -24,7 +26,13 @@ const TaskList = ({ tasks, onTaskClick, onTaskDelete }) => {
   };
 
   const isOverdue = (dateString, status) => {
-    return dateString && new Date(dateString) < new Date() && status !== 'done';
+    if (!dateString || status === 'done') return false;
+  
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    const dueDate = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return dueDate < today;
   };
 
   if (tasks.length === 0) {
