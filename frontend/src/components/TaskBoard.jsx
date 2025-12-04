@@ -6,7 +6,6 @@ import DraggableTaskCard from './DraggableTaskCard';
 import TaskCard from './TaskCard';
 import ConfirmationModal from './ConfirmationModal';
 
-// Droppable Column Component
 const DroppableColumn = ({ column, children }) => {
   const { setNodeRef } = useDroppable({
     id: column.id,
@@ -85,21 +84,18 @@ const TaskBoard = ({ tasks, onTaskMove, onTaskClick, onTaskDelete }) => {
 
     const activeTask = tasks.find(t => t.id === active.id);
     
-    // Determine the target column
     let targetColumn = null;
     
-    // Check if dropped directly on a column
     if (columns.some(col => col.id === over.id)) {
       targetColumn = over.id;
     } else {
-      // Dropped on a task - find which column that task belongs to
+      
       const overTask = tasks.find(t => t.id === over.id);
       if (overTask) {
         targetColumn = overTask.status;
       }
     }
 
-    // Update task status if it changed
     if (activeTask && targetColumn && activeTask.status !== targetColumn) {
       onTaskMove(activeTask.id, targetColumn);
     }

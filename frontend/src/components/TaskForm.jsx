@@ -13,10 +13,9 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Pre-populate form when editing
   useEffect(() => {
     if (task && mode === 'edit') {
-      // Format date to YYYY-MM-DD for date input
+      
       let formattedDate = '';
       if (task.due_date) {
         const date = new Date(task.due_date);
@@ -41,7 +40,7 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
       ...prev,
       [name]: value
     }));
-    // Clear error for this field
+    
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -91,29 +90,29 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
     { 
       value: TaskPriority.LOW, 
       label: PriorityLabels[TaskPriority.LOW],
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-100',
+      color: 'text-gray-700 dark:text-gray-300',
+      bgColor: 'bg-gray-100 dark:bg-gray-700',
       icon: '○'
     },
     { 
       value: TaskPriority.MEDIUM, 
       label: PriorityLabels[TaskPriority.MEDIUM],
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+      color: 'text-blue-600 dark:text-blue-400',
+      bgColor: 'bg-blue-100 dark:bg-blue-900/30',
       icon: '◐'
     },
     { 
       value: TaskPriority.HIGH, 
       label: PriorityLabels[TaskPriority.HIGH],
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100',
+      color: 'text-orange-600 dark:text-orange-400',
+      bgColor: 'bg-orange-100 dark:bg-orange-900/30',
       icon: '●'
     },
     { 
       value: TaskPriority.URGENT, 
       label: PriorityLabels[TaskPriority.URGENT],
-      color: 'text-red-600',
-      bgColor: 'bg-red-100',
+      color: 'text-red-600 dark:text-red-400',
+      bgColor: 'bg-red-100 dark:bg-red-900/30',
       icon: '⚠'
     }
   ];
@@ -122,22 +121,22 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
     { 
       value: TaskStatus.TODO, 
       label: StatusLabels[TaskStatus.TODO],
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-100',
+      color: 'text-gray-700 dark:text-gray-300',
+      bgColor: 'bg-gray-100 dark:bg-gray-700',
       icon: '📋'
     },
     { 
       value: TaskStatus.IN_PROGRESS, 
       label: StatusLabels[TaskStatus.IN_PROGRESS],
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+      color: 'text-blue-600 dark:text-blue-400',
+      bgColor: 'bg-blue-100 dark:bg-blue-900/30',
       icon: '⚡'
     },
     { 
       value: TaskStatus.DONE, 
       label: StatusLabels[TaskStatus.DONE],
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
+      color: 'text-green-600 dark:text-green-400',
+      bgColor: 'bg-green-100 dark:bg-green-900/30',
       icon: '✓'
     }
   ];
@@ -270,8 +269,8 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
                   onClick={() => handleChange({ target: { name: 'priority', value: option.value } })}
                   className={`p-3 rounded-xl border-2 transition-all duration-200 ${
                     formData.priority === option.value
-                      ? `${option.bgColor} dark:bg-opacity-20 border-current ${option.color} shadow-md scale-105`
-                      : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-sm'
+                      ? `${option.bgColor} border-current ${option.color} shadow-md scale-105`
+                      : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-sm'
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
@@ -307,8 +306,8 @@ const TaskForm = ({ task, onSubmit, onCancel, mode = 'create' }) => {
                   onClick={() => handleChange({ target: { name: 'status', value: option.value } })}
                   className={`w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center space-x-3 ${
                     formData.status === option.value
-                      ? `${option.bgColor} dark:bg-opacity-20 border-current ${option.color} shadow-md`
-                      : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-sm'
+                      ? `${option.bgColor} border-current ${option.color} shadow-md`
+                      : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-sm'
                   }`}
                 >
                   <span className="text-xl">{option.icon}</span>

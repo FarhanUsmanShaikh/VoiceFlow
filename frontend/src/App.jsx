@@ -170,6 +170,12 @@ function App() {
     setVoiceData(null);
   };
 
+  const handleVoiceReRecord = () => {
+    setShowVoiceReview(false);
+    setVoiceData(null);
+    setShowVoiceInput(true);
+  };
+
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
   };
@@ -303,6 +309,7 @@ function App() {
                 parsedTask={voiceData.parsed}
                 onConfirm={handleVoiceConfirm}
                 onCancel={handleVoiceCancel}
+                onReRecord={handleVoiceReRecord}
               />
             </div>
           </div>
