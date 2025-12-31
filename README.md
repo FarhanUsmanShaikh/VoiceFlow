@@ -15,9 +15,8 @@ A full-stack task management application with intelligent voice input capabiliti
 4. [Usage](#-usage)
 5. [API Documentation](#-api-documentation)
 6. [Design Decisions & Assumptions](#-design-decisions--assumptions)
-7. [AI Tools Usage](#-ai-tools-usage)
-8. [Known Limitations](#-known-limitations)
-9. [Future Enhancements](#-future-enhancements)
+7. [Known Limitations](#-known-limitations)
+8. [Future Enhancements](#-future-enhancements)
 
 ---
 
@@ -68,7 +67,7 @@ A full-stack task management application with intelligent voice input capabiliti
 - **Joi**: Schema validation for API endpoints
 - **Web Speech API**: Browser-native speech recognition (Chrome, Edge, Safari)
 
-## � Prroject Setup
+## � Project Setup
 
 ### Prerequisites
 
@@ -546,7 +545,7 @@ voice-task-tracker/
 6. **Microphone access**: Users will grant microphone permissions
 7. **Clear speech**: Users speak clearly with minimal background noise
 
-## ⚠️ Known Limitations
+## Known Limitations
 
 ### Voice Input Limitations
 1. **Internet Required**: Web Speech API uses Google's servers, requires internet connection
